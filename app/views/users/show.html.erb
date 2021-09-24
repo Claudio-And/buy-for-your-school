@@ -15,7 +15,7 @@
           <%= I18n.t("user.full_name") %>
         </dt>
         <dd class="govuk-summary-list__value">
-          <%= @current_user.full_name %>
+          <%= @user.full_name %>
         </dd>
       </div>
 
@@ -25,13 +25,13 @@
           <%= I18n.t("user.email") %>
         </dt>
         <dd class="govuk-summary-list__value">
-          <%= @current_user.email %>
+          <%= @user.email %>
         </dd>
       </div>
 
     </dl>
 
-    <%= link_to I18n.t("generic.button.yes_continue"), new_user_support_request_path(current_user),
+    <%= link_to I18n.t("generic.button.yes_continue"), new_user_support_request_path(@user),
                 class: "govuk-button", role: "button" %>
     <p class="govuk-body">
       <%= link_to I18n.t("generic.button.exit_without_save"), dashboard_path %>

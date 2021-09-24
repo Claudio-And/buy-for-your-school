@@ -2,6 +2,7 @@
 
 class SupportRequestsController < ApplicationController
   before_action :set_support_request, only: %i[show edit update]
+  before_action :set_user
 
   def new
     @support_form_wizard = SupportFormWizard.new(step: 1)
@@ -54,10 +55,15 @@ private
     @support_request = SupportRequestPresenter.new(SupportRequest.find(params[:id]))
   end
 
+  # @return [UserPresenter]
+  def set_user
+    @user = UserPresenter.new(current_user)
+  end
+
   def support_form_wizard_params
     params.require(:support_form_wizard).permit(
       :phone_number, :journey_id, :category_id, :message, :step
-    ).merge(user: current_user.__getobj__)
+    ).merge(user: current_user)
   end
 
   def params_cleaned_up

@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   def index
+    @user = UserPresenter.new(current_user)
     render :show
   end
 

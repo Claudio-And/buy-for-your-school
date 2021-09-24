@@ -6,7 +6,7 @@
   <div id="specification-ids-hint" class="govuk-hint">
     <%= I18n.t("support_requests.sections.about_your_request.specification_ids_hint") %>
   </div>
-  <% current_user.journeys.each do |journey| %>
+  <% @user.journeys.each do |journey| %>
     <%= form.govuk_radio_button :journey_id, journey.id, label: { text: journey.created_at }, hint: { text: journey.category.title } %>
   <% end %>
 </div>
