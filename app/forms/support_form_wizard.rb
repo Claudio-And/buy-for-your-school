@@ -21,7 +21,7 @@ class SupportFormWizard
   end
 
   def support_request
-    @support_request ||= SupportRequest.new(params_cleaned_up)
+    @support_request ||= SupportRequestPresenter.new(SupportRequest.new(params_cleaned_up))
   end
 
   class Step1 < SupportFormWizard

@@ -1,4 +1,4 @@
-class LongTextAnswerPresenter < SimpleDelegator
+class LongTextAnswerPresenter < BasePresenter
   include ActionView::Helpers::TextHelper
 
   # @return [String]

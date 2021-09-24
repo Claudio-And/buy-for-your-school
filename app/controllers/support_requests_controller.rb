@@ -49,14 +49,15 @@ private
     SupportFormWizard::STEPS.fetch(params[:step].to_i) - 1
   end
 
+  # @return [SupportRequestPresenter]
   def set_support_request
-    @support_request = SupportRequest.find(params[:id])
+    @support_request = SupportRequestPresenter.new(SupportRequest.find(params[:id]))
   end
 
   def support_form_wizard_params
     params.require(:support_form_wizard).permit(
       :phone_number, :journey_id, :category_id, :message, :step
-    ).merge(user: current_user)
+    ).merge(user: current_user.__getobj__)
   end
 
   def params_cleaned_up

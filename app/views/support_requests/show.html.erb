@@ -68,7 +68,7 @@
           Attached specifications
         </dt>
         <dd class="govuk-summary-list__value">
-          <%= @support_request.journey&.created_at&.strftime("%e %B %Y") %>
+          <%= @support_request.journey&.created_at %>
           <br>
           <%= @support_request.journey&.category&.title %>
         </dd>
