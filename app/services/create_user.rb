@@ -18,17 +18,30 @@ class CreateUser
     return false unless user_id
 
     if current_user
-      current_user.update!(first_name: first_name, last_name: last_name)
+      current_user.update!(first_name: first_name, last_name: last_name, orgs: orgs)
       Rollbar.info "Updated account for #{email}"
       current_user
     else
-      new_user = create_user!
+      new_user = create_user! if supported_establishment?
       Rollbar.info "Created account for #{email}"
       new_user
     end
   end
 
 private
+
+  # @return [Boolean]
+  def supported_establishment?
+    # check current organisation
+    ORG_TYPE_IDS.include?(current_org_type_id)
+    # check all organisations
+    # orgs.any? { |org| ORG_TYPE_IDS.include?(org["type"]["id"]) }
+  end
+
+  # @return [String]
+  def current_org_type_id
+    orgs.select { |org| org["id"].eql?(org_id) }["type"]["id"]
+  end
 
   # @return [User, nil]
   def current_user

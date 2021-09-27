@@ -13,4 +13,9 @@ class User < ApplicationRecord
 
   has_many :support_requests, class_name: "SupportRequest"
   accepts_nested_attributes_for :support_requests
+
+
+  # from supported establishments
+  scope :supported, ->(ids) { where("(data->'type'->>'id' ? :value)::int", value: ids) }
+
 end
