@@ -47,9 +47,12 @@ RSpec.feature "Users can see a start page for planning their purchase" do
 
     click_on("procuring a new catering service for a school")
 
-    expect(page).to have_content(I18n.t("planning.start_page.page_title"))
+    # planning.start_page.page_title
+    expect(page).to have_text "Catering services"
+    expect(find("h1.govuk-heading-xl")).to have_text "Catering services"
 
-    click_on(I18n.t("generic.button.back"))
+    # generic.button.back
+    click_on "Back"
 
     expect(find("h1.govuk-heading-xl")).to have_text "Create a specification to procure something for your school"
   end
